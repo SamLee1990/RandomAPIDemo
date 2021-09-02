@@ -40,7 +40,10 @@ class UsersViewController: UIViewController {
                     }
                 })
 
-                if let data = data {
+                if let data = data,
+                   let urlResponse = urlResponse as? HTTPURLResponse,
+                   error == nil {
+                    print("response statusCod = \(urlResponse.statusCode)")
                     do {
                         let searchResult = try decoder.decode(SearchResult.self, from: data)
                         users = searchResult.results
@@ -50,8 +53,6 @@ class UsersViewController: UIViewController {
                     } catch {
                         print("JSONDecoder 解析失敗")
                     }
-                } else {
-                    print("data is nil")
                 }
 
             }.resume()
