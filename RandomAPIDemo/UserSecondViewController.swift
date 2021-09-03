@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserSecondViewController: UIViewController {
     
@@ -36,14 +37,15 @@ class UserSecondViewController: UIViewController {
         staticLabel.text = "Hi, My name is"
         dynamicLabel.text = name
         
-        URLSession.shared.dataTask(with: picture) { data, urlResponse, error in
-            if let data = data,
-               let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self.imageView.image = image
-                }
-            }
-        }.resume()
+//        URLSession.shared.dataTask(with: picture) { data, urlResponse, error in
+//            if let data = data,
+//               let image = UIImage(data: data) {
+//                DispatchQueue.main.async {
+//                    self.imageView.image = image
+//                }
+//            }
+//        }.resume()
+        imageView.kf.setImage(with: picture)
     }
 
     @IBAction func changeInfo(_ sender: UISegmentedControl) {
